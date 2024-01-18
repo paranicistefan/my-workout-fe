@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledElement = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 24px;
   align-items: center;
   padding: 20px;
   cursor: pointer;

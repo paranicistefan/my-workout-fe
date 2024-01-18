@@ -2,7 +2,7 @@ export interface IExercise {
   id: string;
   name: string;
   targetedGroupe: string;
-  isUserExercise: boolean;
+  isUserExercise?: boolean;
 }
 
 export interface IExerciseReq {

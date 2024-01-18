@@ -77,16 +77,22 @@ export const deleteResource = async <DeleteResponse>(
   return data as DeleteResponse;
 };
 
-export const useDeleteResource = <DeleteResponse>(
+export const useDeleteResource = <DeleteResponse, DeleteAgrs>(
   path: string,
   config: UseMutationOptions<unknown, unknown, unknown, unknown[]> = {}
 ) => {
   const { mutate, isLoading } = useMutation<
     DeleteResponse,
     unknown,
-    DeleteResponse,
+    DeleteAgrs,
     unknown[]
-  >(() => deleteResource<DeleteResponse>(path), { ...config });
+  >(
+    (args: DeleteAgrs) =>
+      deleteResource<DeleteResponse>(`${path}${args ? `/${args}` : ""}`),
+    {
+      ...config,
+    }
+  );
 
   return { mutate, isLoading };
 };

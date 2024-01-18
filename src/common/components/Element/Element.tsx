@@ -2,14 +2,16 @@ import { HTMLProps, ReactNode } from "react";
 import { StyledElement } from "./styles";
 
 interface IElement extends HTMLProps<HTMLDivElement> {
-  title: string;
+  title?: string;
   rightElement?: ReactNode;
+  children?: ReactNode;
 }
 
-const Element = ({ title, rightElement, ...props }: IElement) => {
+const Element = ({ title, rightElement, children, ...props }: IElement) => {
   return (
     <StyledElement {...props}>
-      <h3>{title}</h3>
+      {title && <h3>{title}</h3>}
+      {children}
       {rightElement}
     </StyledElement>
   );

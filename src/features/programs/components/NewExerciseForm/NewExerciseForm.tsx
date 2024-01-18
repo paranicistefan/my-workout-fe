@@ -1,26 +1,48 @@
 import { SyntheticEvent, useState } from "react";
-import ExerciseForm from "../ExerciseForm/ExerciseForm";
 import { Button } from "primereact/button";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { PrimeIcons } from "primereact/api";
-import { initialExerciseModel } from "../../../exercises/exercises.models";
 import { StyledNewExerciseForm } from "./styles";
-import { IExerciseReq } from "../../../exercises/exercises.interfaces";
+import ProgramExercise from "../ProgramExercise/ProgramExercise";
+import { usePostResource } from "../../../../common/hooks/useApi";
+import { IAddExerciseReq, IProgram } from "../../programs.interfaces";
+import { programsApiPaths } from "../../programs.api";
+import { toast } from "react-toastify";
+import { useQueryClient } from "react-query";
+import { useParams } from "react-router-dom";
 
 const NewExerciseForm = () => {
-  const [exercise, setExercise] = useState<IExerciseReq | undefined>();
+  const { id: programId } = useParams();
+  const [open, setOpen] = useState<boolean>(false);
+
+  const queryClient = useQueryClient();
+
+  const { mutate: addExercise, isLoading: isAddingExercise } = usePostResource<
+    IAddExerciseReq,
+    IProgram
+  >(programsApiPaths.programExercises(programId || ""), {
+    onSuccess() {
+      toast.success("Program Succesfully updated");
+      queryClient.refetchQueries(programsApiPaths.program(programId || ""));
+      setOpen(false);
+    },
+  });
+
+  const onSubmit = (selectedExercise: string) =>
+    addExercise({ selectedExercise });
+
   const onDelete = () => (e: SyntheticEvent) => {
     e.stopPropagation();
-    setExercise(undefined);
+    setOpen(false);
   };
   const onAdd = (e: SyntheticEvent) => {
     e.preventDefault();
-    setExercise(initialExerciseModel);
+    setOpen(true);
   };
-  if (exercise)
+  if (open)
     return (
       <StyledNewExerciseForm>
-        <ExerciseForm exercise={exercise} />
+        <ProgramExercise isSubmiting={isAddingExercise} onSubmit={onSubmit} />
         <Button rounded aria-label="Filter" onClick={onDelete()}>
           <FaRegTrashAlt />
         </Button>
