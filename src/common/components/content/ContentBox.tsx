@@ -3,7 +3,7 @@ import { StyledContent } from "./styles";
 import SkeletonLoader from "./SkeletonLoader";
 
 interface IContentBox {
-  dataLength: number;
+  dataLength?: number;
   children: ReactNode;
   isLoading?: boolean;
   error?: string;
@@ -18,7 +18,7 @@ const ContentBox = ({
 
   if (error) return <p>{error}</p>;
 
-  if (!dataLength) return <p>No data available</p>;
+  if (dataLength === 0) return <p>No data available</p>;
 
   return <StyledContent>{children}</StyledContent>;
 };

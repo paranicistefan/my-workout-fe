@@ -57,7 +57,7 @@ const ViewProgramExercises = ({
   };
 
   return (
-    <ContentBox dataLength={exercises?.length || 0} isLoading={isLoading}>
+    <ContentBox isLoading={isLoading}>
       {exercises?.map((exercise) => (
         <Element
           key={exercise.id}
