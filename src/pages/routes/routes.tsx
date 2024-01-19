@@ -11,6 +11,7 @@ import NewWorkout from "../NewWorkout/NewWorkout";
 import ProgramChooser from "../NewWorkout/ProgramChooser";
 import UnprotectedLayout from "../../common/components/Layout/UnprotectedLayout";
 import Exercises from "../Exercises";
+import NewProgram from "../NewProgram";
 
 const Routes = () => {
   return (
@@ -22,6 +23,7 @@ const Routes = () => {
       <Route path={RouteEnum.Dashobard} element={<Layout />}>
         <Route index element={<Dashboard />} />
         <Route path={RouteEnum.Programs} element={<Programs />} />
+        <Route path={RouteEnum.NewProgram} element={<NewProgram />} />
         <Route path={RouteEnum.Exercises} element={<Exercises />} />
         <Route path={RouteEnum.Program} element={<Program />} />
         <Route path={RouteEnum.Workouts} element={<Workouts />} />

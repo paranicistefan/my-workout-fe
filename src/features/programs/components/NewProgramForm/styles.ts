@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const StyledContent = styled.div`
+export const StyledNewProgramForm = styled.form`
   display: flex;
   flex-direction: column;
-  flex: 1;
-  gap: 16px;
+  gap: 1rem;
+  height: 100%;
 `;

@@ -10,13 +10,15 @@ import { DropdownChangeEvent } from "primereact/dropdown";
 
 interface IProgramExercise {
   exerciseId?: string;
-  onSubmit: (id: string) => void;
+  onSubmit?: (id: string) => void;
   isSubmiting?: boolean;
+  onChange?: (id: string) => void;
 }
 const ProgramExercise = ({
   exerciseId = "",
   isSubmiting,
   onSubmit,
+  onChange,
 }: IProgramExercise) => {
   const [selectedId, setSelectedId] = useState<string>(exerciseId);
 
@@ -40,17 +42,18 @@ const ProgramExercise = ({
   const handleChange = useCallback(
     (e: DropdownChangeEvent) => {
       const { value } = e;
+      if (onChange) onChange(value);
       setSelectedId(value);
     },
-    [setSelectedId]
+    [setSelectedId, onChange]
   );
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSubmit(selectedId);
+    onSubmit && onSubmit(selectedId);
   };
 
-  const isExerciseDifferent = selectedId !== exerciseId;
+  const isExerciseDifferent = !onChange && selectedId !== exerciseId;
 
   return (
     <StyledProgramExercise onSubmit={handleSubmit}>

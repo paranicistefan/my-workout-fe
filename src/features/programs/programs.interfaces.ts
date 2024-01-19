@@ -6,6 +6,10 @@ export interface IProgram {
   createdAd: string;
   programExercises: IExercise[];
 }
+export interface IAddProgramReq {
+  name: string;
+  programExercises: string[];
+}
 
 export interface IAddExerciseReq {
   selectedExercise: string;
