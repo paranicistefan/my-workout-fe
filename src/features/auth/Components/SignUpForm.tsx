@@ -20,6 +20,7 @@ const SignUpForm = () => {
     authApiPaths.signUp,
     {
       onSuccess() {
+        toast.success("User Successfully created");
         navigate(RouteEnum.Login);
       },
       onError(error) {
@@ -49,13 +50,14 @@ const SignUpForm = () => {
         label="Password"
         onChange={onDataChange(setData)}
         value={data.password}
+        type="password"
       />
       <Input
         name="name"
         placeholder="Enter your name"
         label="Name"
         onChange={onDataChange(setData)}
-        value={data.password}
+        value={data.name}
       />
       <Button loading={isLoading} type="submit" label="Submit" />
     </StyledAuthForm>

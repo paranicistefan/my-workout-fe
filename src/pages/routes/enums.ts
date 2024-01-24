@@ -7,6 +7,7 @@ export enum RouteEnum {
   Exercises = "/exercises",
   NewProgram = "/new-program",
   Workouts = "/workouts",
+  Workout = "/workouts/:id",
   NewWorkout = "/new-workout",
   NewWorkoutProgram = "/new-workout/:programId",
 }

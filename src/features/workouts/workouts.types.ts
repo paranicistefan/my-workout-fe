@@ -1,8 +1,10 @@
 import { IProgram, ISet } from "../programs/programs.interfaces";
 
+export interface IWorkoutSet extends Omit<ISet, "id"> {}
+
 export interface IWorkoutExercise {
   name: string;
-  sets: ISet[];
+  sets: IWorkoutSet[];
 }
 export interface IWorkoutRes {
   programName: string;
@@ -13,6 +15,6 @@ export interface IWorkout {
   id: string;
   createdAt: Date;
   program: IProgram;
-  sets: ISet[];
+  sets: IWorkoutSet[];
   isArcived: boolean;
 }

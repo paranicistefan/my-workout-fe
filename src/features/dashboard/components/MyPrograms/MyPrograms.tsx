@@ -20,7 +20,7 @@ const MyPrograms = () => {
     }
   );
   const navigate = useNavigate();
-  const onClick = (id: string) => navigate(`${RouteEnum.Programs}/${id}`);
+  const onClick = (id: string) => navigate(`${RouteEnum.NewWorkout}/${id}`);
   return (
     <ContentBox dataLength={data?.length || 0} isLoading={isLoading}>
       {data?.map((program) => (

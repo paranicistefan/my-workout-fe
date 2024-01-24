@@ -18,9 +18,12 @@ const ContentBox = ({
 
   if (error) return <p>{error}</p>;
 
-  if (dataLength === 0) return <p>No data available</p>;
-
-  return <StyledContent>{children}</StyledContent>;
+  return (
+    <StyledContent>
+      {dataLength === 0 && <p>No data available</p>}
+      {children}
+    </StyledContent>
+  );
 };
 
 export default ContentBox;

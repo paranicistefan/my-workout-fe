@@ -34,7 +34,7 @@ const ViewExercise = ({ exercise }: IViewExercise) => {
     },
   });
 
-  const { mutate: mutateDelete } = useDeleteResource<void>(
+  const { mutate: mutateDelete } = useDeleteResource<void, void>(
     exercisesApiPaths.exercise(exercise.id),
     {
       onSuccess() {

@@ -6,7 +6,15 @@ export const StyledSetRow = styled.div`
   gap: 16px;
 `;
 
-export const StyledSetsForm = styled.form`
+export const StyledSetsForm = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 16px;
+`;
+
+export const StyledWorkoutSetsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
 `;

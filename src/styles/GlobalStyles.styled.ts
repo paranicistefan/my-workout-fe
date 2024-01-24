@@ -19,6 +19,9 @@ const GlobalStyles = styled.createGlobalStyle`
   ::-webkit-scrollbar-thumb:hover {
     background: ${({ theme }) => theme.colors.black};
   }
+  a {
+    color: ${({ theme }) => theme.colors.secondary};
+  }
   .filepond {
     &--root {
       background: ${({ theme }) => theme.colors.white};

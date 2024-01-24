@@ -13,17 +13,16 @@ const authMiddleware = async (config: InternalAxiosRequestConfig) => {
   return config;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// const responseErrorMiddleware = async (err: any) => {
-//   const status = err.response?.status || 500;
+const responseErrorMiddleware = async (err: any) => {
+  const status = err.response?.status || 500;
 
-//   if (status === 401) {
-//     localStorage.remove("user-data");
-//     window.location.replace("/login");
-//   }
+  if (status === 401) {
+    localStorage.removeItem("user-data");
+    window.location.replace("/login");
+  }
 
-//   return Promise.reject(err);
-// };
+  return Promise.reject(err);
+};
 
 export const apiClient = axios.create({
   //TODO Use an env variable
@@ -32,4 +31,7 @@ export const apiClient = axios.create({
 });
 
 apiClient.interceptors.request.use(authMiddleware);
-// apiClient.interceptors.response.use(responseErrorMiddleware);
+apiClient.interceptors.response.use(
+  (value) => Promise.resolve(value),
+  responseErrorMiddleware
+);
